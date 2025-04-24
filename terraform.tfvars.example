@@ -1,0 +1,25 @@
+# --- S3 用 ---
+bucket_name = "your-s3-bucket-name"    # S3バケット名（ユニークな名前を指定）
+environment = "Production"             # 環境名（Production または Staging など）
+
+# --- ACM 用 ---
+domain_name               = "your-domain.com"         # ACM証明書を発行するメインドメイン名
+subject_alternative_names = ["www.your-domain.com"]   # サブドメイン（例: www付き）
+
+# --- CloudFront 用 ---
+aliases = ["your-domain.com", "www.your-domain.com"]   # CloudFrontに設定するカスタムドメイン
+
+# --- Route53 用 ---
+zone_name       = "your-domain.com"         # 既にRoute53に登録されているドメイン名（末尾に「.」は不要）
+www_record_name = "www.your-domain.com"     # CloudFront用Aレコードに使用するFQDN
+use_existing_zone = true                    # true: 既存ホストゾーンを利用 / false: Terraformで新規作成
+
+# --- WAF 用 ---
+waf_name        = "cloudfront-waf"                  # WAF WebACLの名前（例: cloudfront-waf-stg）
+waf_description = "WAF WebACL for Staging"     # WAF WebACLの概要説明（任意）
+
+# --- CloudWatch / SNS 用 ---
+dashboard_name      = "cloudfront-dashboard"               # CloudWatchダッシュボード名
+alarm_name          = "cloudfront-total-error-rate-alarm"  # アラーム名（環境ごとに一意にするのが望ましい）
+sns_topic_name      = "cloudfront-alert-topic"             # SNSトピック名（必要に応じて変更）
+notification_email  = "your-email@example.com"             # アラーム通知を送信するメールアドレス

@@ -1,0 +1,22 @@
+*.tfvars
+# Terraform state files
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate.backup
+
+# Crash log files
+crash.log
+
+# Exclude terraform plan files
+*.tfplan
+
+# Sensitive variable files
+*.tfvars
+!terraform.tfvars.example
+
+# OS/IDE/system files
+.DS_Store
+*.swp
+
+# CloudShell/作業中の不要ファイル
+terraform.zip
