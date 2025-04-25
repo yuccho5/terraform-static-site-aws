@@ -20,7 +20,7 @@ CloudFront を使った HTTPS 配信、S3 バケットへのオリジン制御�
 ##  ファイル構成
 
 ```text
- ├── provider.tf        	 # プロバイダ定義（東京リージョン + バージニア北
+ ├── provider.tf        	 # プロバイダ定義（東京リージョン + バージニア北部
  ├── s3.tf			 # S3バケットとバケットポリシ
  ├── cloudfront.tf		 # CloudFrontとOACの設定
  ├── acm.tf			 # ACM証明書の発行とDNS検証
