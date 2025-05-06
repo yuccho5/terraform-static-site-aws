@@ -1,5 +1,19 @@
+#############################################
+# ACM 証明書設定（CloudFront用）
+#
+# - CloudFront では us-east-1 リージョンに ACM 証明書が必要
+# - DNS 検証方式を利用（Route53 で CNAME レコード自動作成）
+# - subject_alternative_names に www サブドメインなど含め可
+# - 証明書の有効化（検証完了）まで待機設定あり
+#############################################
+
+
 ###########################################
-# ACM 証明書の作成（CloudFront用、us-east-1）
+# ACM 証明書の作成
+# - ドメイン：var.domain_name
+# - サブドメイン：var.subject_alternative_names
+# - DNS検証方式
+# - us-east-1 固定（CloudFront用）
 ###########################################
 resource "aws_acm_certificate" "website_cert" {
   provider          = aws.us_east_1  # CloudFront用証明書は us-east-1 に必要
@@ -15,8 +29,12 @@ resource "aws_acm_certificate" "website_cert" {
 
 
 ###########################################
-# DNS検証の完了を待機するリソース（明示的に依存）
-# → これがあることで CloudFront 等が検証完了後に続く
+# ACM 証明書の DNS 検証を待機
+#
+# - aws_route53_record.cert_validation で作成される
+#   CNAME レコードを参照して DNS 検証を自動化
+# - CloudFront ディストリビューション作成時に
+#   証明書が未検証エラーとならないよう依存関係を明示
 ###########################################
 resource "aws_acm_certificate_validation" "cert_validation" {
   provider                = aws.us_east_1
