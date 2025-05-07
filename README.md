@@ -4,6 +4,8 @@
 CloudFront を使った HTTPS 配信、S3 バケットへのオリジン制御、WAF によるセキュリティ強化、CloudWatch による監視などを含みます。
 
 ---
+![AWS構成図](terraform-diagram.png)
+
 
 ##  主な構成サービス
 
